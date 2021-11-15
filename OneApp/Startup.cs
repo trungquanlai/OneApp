@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using OneApp.Data;
+using OneApp.Services;
 using PosRest.Data;
 using System;
 using System.Collections.Generic;
@@ -31,6 +34,14 @@ namespace OneApp
                 options.UseSqlServer(Configuration.GetConnectionString("SqlExpressConnection")));            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "One App", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +58,13 @@ namespace OneApp
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.RoutePrefix = "";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OneApp V1");
+            });
         }
     }
 }
