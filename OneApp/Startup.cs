@@ -37,6 +37,10 @@ namespace OneApp
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IMenuService, MenuService>();
+            services.AddTransient<ITableService, TableService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddSwaggerGen(options =>
             {

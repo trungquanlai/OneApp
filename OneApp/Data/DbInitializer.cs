@@ -43,6 +43,57 @@ namespace OneApp.Data
             foreach (Category c in categories)
                 context.Categories.Add(c);
 
+            var tables = new Table[]
+            {
+                new Table { Name = "Table 1", TimeStamp = DateTime.Now },
+                new Table { Name = "Table 2" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 3" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 4" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 5" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 6" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 7" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 8" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 9" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 10" , TimeStamp = DateTime.Now },
+                new Table { Name = "Table 11" , TimeStamp = DateTime.Now },
+            };
+
+            foreach (Table t in tables)
+                context.Tables.Add(t);
+
+            var users = new User[]
+            {
+                new User { Name = "admin", UserName = "admin", Password = "admin", Roles = "admin", TimeStamp = DateTime.Now},
+                new User { Name = "user", UserName = "user", Password = "user", Roles = "user", TimeStamp = DateTime.Now},
+            };
+
+            foreach (User u in users)
+                context.Users.Add(u);
+
+            var itemsAppetiser = new Item[]
+            {
+                new Item {NameEN = "Crispy Wontons (5pcs)", NameVN = "Wonton chien", Price = 7m, TimeStamp = DateTime.Now },
+                new Item {NameEN = "Spring Rolls (2pcs)", NameVN = "Cha Gio", Price = 7m, TimeStamp = DateTime.Now },
+                new Item {NameEN = "Grilled Pork Skewers", NameVN = "Nem Nuong", Price = 8m, TimeStamp = DateTime.Now },
+                new Item {NameEN = "Vietnamese Savoury Pancake w Prawns & Pork", NameVN = "Banh Xeo", Price = 21m, Description = "Slowly Pan Fried for Maximun Crunch so a Little Patience is Required", TimeStamp = DateTime.Now },
+                new Item {NameEN = "Fried Chicken Wings", NameVN = "Canh Ga Chien Gion", Price = 8.5m, TimeStamp = DateTime.Now },
+                new Item {NameEN = "Summer Rolls (2pcs) Prawns & Pork", NameVN = "CanhGoi Cuon", Price = 7.5m, TimeStamp = DateTime.Now },
+                new Item {NameEN = "BBQ Pork", NameVN = "Dia Xa Xiu", Price = 11.5m, TimeStamp = DateTime.Now },
+                new Item {NameEN = "Battled Squid", NameVN = "Muc Chien Don", Price = 11.5m, TimeStamp = DateTime.Now },
+            };
+
+            foreach (Item i in itemsAppetiser)
+                context.Items.Add(i);
+
+
+            var menus = new Menu[]
+            {
+                new Menu { Category = categories.SingleOrDefault(c => c.Name == CategoryTypes.Appetisers), Items = itemsAppetiser, TimeStamp = DateTime.Now }
+            };
+
+            foreach (Menu m in menus)
+                context.Menus.Add(m);
+
             context.SaveChanges();
         }
     }
