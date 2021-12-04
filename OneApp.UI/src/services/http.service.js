@@ -30,7 +30,6 @@ class Http {
     }
 
     async get(endpoint, callback) {
-        debugger;
         await this.send('get', endpoint, null, callback);
     }
 
@@ -47,36 +46,16 @@ class Http {
     }
 
     async send(verb, endpoint, data, callback) {
-        debugger;
         await this.HttpClient.request({
             method: verb,
             url: endpoint,
             data: data,
         })
             .then((response) => {
-                // store.commit('finishLoading');
-                debugger;
-
                 if (response.data) callback(response.data);
                 else this.error(response.data.message);
             })
-            .catch((errResp) => {
-                // store.commit('finishLoading');
-            });
-    }
-
-    info(message) {
-        // store.commit('updateNotify', {
-        //     itemType: 'info',
-        //     text: message.toString(),
-        // });
-    }
-
-    error(message) {
-        // store.commit('updateNotify', {
-        //     itemType: 'error',
-        //     text: message.toString(),
-        // });
+            .catch((errResp) => {});
     }
 }
 

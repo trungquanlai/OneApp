@@ -44,7 +44,6 @@ export default {
         fGetOrder() {
             if (this.fGetOrder) {
                 this.getOrders();
-                debugger;
                 let test = this.orders;
             }
         },

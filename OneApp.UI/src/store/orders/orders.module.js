@@ -22,7 +22,6 @@ const actions = {
 
 const mutations = {
     [SET_ORDERS](state, orders) {
-        debugger;
         state.orders = orders;
     },
 };
